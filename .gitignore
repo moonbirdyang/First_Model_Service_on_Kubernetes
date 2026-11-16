@@ -12,3 +12,4 @@ model.pkl
 mlflow.db*
 mlruns/
 mlartifacts/
+training-result.json

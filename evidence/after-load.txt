@@ -1,6 +1,0 @@
-NAME                            READY   STATUS      RESTARTS   AGE
-pod/iris-api-55c49f55d4-tpghs   1/1     Running     0          19m
-pod/iris-load-9hxb6             0/1     Completed   0          10m
-
-NAME                                           REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
-horizontalpodautoscaler.autoscaling/iris-api   Deployment/iris-api   cpu: 2%/50%   1         5         5          17m

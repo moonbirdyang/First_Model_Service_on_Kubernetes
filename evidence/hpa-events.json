@@ -1,0 +1,350 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:19:47Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "459",
+                "uid": "749c0269-64ad-4477-8a3b-3311c3de5584"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:19:47Z",
+            "message": "Scaled up replica set iris-api-55c49f55d4 from 0 to 1",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:19:47Z",
+                "name": "iris-api.18e8722cab08b051",
+                "namespace": "default",
+                "resourceVersion": "461",
+                "uid": "915b4b50-780a-41c5-91cd-93f9543a193c"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:21:05Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "616",
+                "uid": "55f4ffa0-2f15-4c87-9246-5391719ec065"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:21:05Z",
+            "message": "failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:21:05Z",
+                "name": "iris-api.18e8723edf0d65ad",
+                "namespace": "default",
+                "resourceVersion": "618",
+                "uid": "ea8dd4ae-1d4c-4564-937b-7b9ee0982df9"
+            },
+            "reason": "FailedGetResourceMetric",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:21:05Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "616",
+                "uid": "55f4ffa0-2f15-4c87-9246-5391719ec065"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:21:05Z",
+            "message": "invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: unable to fetch metrics from resource metrics API: the server is currently unable to handle the request (get pods.metrics.k8s.io)",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:21:05Z",
+                "name": "iris-api.18e8723edf721183",
+                "namespace": "default",
+                "resourceVersion": "619",
+                "uid": "cab189f1-054b-4265-92f6-942ae6b8d74c"
+            },
+            "reason": "FailedComputeMetricsReplicas",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Warning"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:30:06Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "1004",
+                "uid": "55f4ffa0-2f15-4c87-9246-5391719ec065"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:30:06Z",
+            "message": "New size: 2; reason: cpu resource utilization (percentage of request) above target",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:30:06Z",
+                "name": "iris-api.18e872bcaddf64c1",
+                "namespace": "default",
+                "resourceVersion": "1133",
+                "uid": "1cae6950-c277-4134-9687-af8b93d78418"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:30:06Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "1131",
+                "uid": "749c0269-64ad-4477-8a3b-3311c3de5584"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:30:06Z",
+            "message": "Scaled up replica set iris-api-55c49f55d4 from 1 to 2",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:30:06Z",
+                "name": "iris-api.18e872bcae8be11c",
+                "namespace": "default",
+                "resourceVersion": "1135",
+                "uid": "fcbb9246-3673-493d-8ea7-c0d451ddb28c"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:31:06Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "1173",
+                "uid": "55f4ffa0-2f15-4c87-9246-5391719ec065"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:31:06Z",
+            "message": "New size: 4; reason: cpu resource utilization (percentage of request) above target",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:31:06Z",
+                "name": "iris-api.18e872caa8f3c2a1",
+                "namespace": "default",
+                "resourceVersion": "1216",
+                "uid": "99abc358-9c47-425a-bb03-27689bbab7ae"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:31:06Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "1215",
+                "uid": "749c0269-64ad-4477-8a3b-3311c3de5584"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:31:06Z",
+            "message": "Scaled up replica set iris-api-55c49f55d4 from 2 to 4",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:31:06Z",
+                "name": "iris-api.18e872caa952346e",
+                "namespace": "default",
+                "resourceVersion": "1219",
+                "uid": "08482ebc-c4ef-4017-9650-9b4bfda1ad7e"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:31:21Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "1217",
+                "uid": "55f4ffa0-2f15-4c87-9246-5391719ec065"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:31:21Z",
+            "message": "New size: 5; reason: cpu resource utilization (percentage of request) above target",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:31:21Z",
+                "name": "iris-api.18e872ce2912a423",
+                "namespace": "default",
+                "resourceVersion": "1277",
+                "uid": "c5625b3a-d7f7-45ff-a3a0-0ea9a1274dcc"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:31:21Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "1275",
+                "uid": "749c0269-64ad-4477-8a3b-3311c3de5584"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:31:21Z",
+            "message": "Scaled up replica set iris-api-55c49f55d4 from 4 to 5",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:31:21Z",
+                "name": "iris-api.18e872ce2a42fd14",
+                "namespace": "default",
+                "resourceVersion": "1279",
+                "uid": "31164c43-2224-45cb-8117-8a29e060420d"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:38:51Z",
+            "involvedObject": {
+                "apiVersion": "autoscaling/v2",
+                "kind": "HorizontalPodAutoscaler",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "1465",
+                "uid": "55f4ffa0-2f15-4c87-9246-5391719ec065"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:38:51Z",
+            "message": "New size: 1; reason: All metrics below target",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:38:51Z",
+                "name": "iris-api.18e87336ff495125",
+                "namespace": "default",
+                "resourceVersion": "1726",
+                "uid": "94b1bad8-c70e-42e9-bdde-3c0d739c730f"
+            },
+            "reason": "SuccessfulRescale",
+            "reportingComponent": "horizontal-pod-autoscaler",
+            "reportingInstance": "",
+            "source": {
+                "component": "horizontal-pod-autoscaler"
+            },
+            "type": "Normal"
+        },
+        {
+            "apiVersion": "v1",
+            "count": 1,
+            "eventTime": null,
+            "firstTimestamp": "2026-11-16T06:38:51Z",
+            "involvedObject": {
+                "apiVersion": "apps/v1",
+                "kind": "Deployment",
+                "name": "iris-api",
+                "namespace": "default",
+                "resourceVersion": "1723",
+                "uid": "749c0269-64ad-4477-8a3b-3311c3de5584"
+            },
+            "kind": "Event",
+            "lastTimestamp": "2026-11-16T06:38:51Z",
+            "message": "Scaled down replica set iris-api-55c49f55d4 from 5 to 1",
+            "metadata": {
+                "creationTimestamp": "2026-11-16T06:38:51Z",
+                "name": "iris-api.18e87336ffb0743b",
+                "namespace": "default",
+                "resourceVersion": "1727",
+                "uid": "e778556c-7983-4ff0-9f1f-b1496e24043c"
+            },
+            "reason": "ScalingReplicaSet",
+            "reportingComponent": "deployment-controller",
+            "reportingInstance": "",
+            "source": {
+                "component": "deployment-controller"
+            },
+            "type": "Normal"
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}

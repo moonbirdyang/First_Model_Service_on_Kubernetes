@@ -1,0 +1,9 @@
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/iris-api-55c49f55d4-tpghs   1/1     Running   0          8m51s
+
+NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+service/iris-api     ClusterIP   10.97.149.225   <none>        80/TCP    8m51s
+service/kubernetes   ClusterIP   10.96.0.1       <none>        443/TCP   9m39s
+
+NAME                                           REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/iris-api   Deployment/iris-api   cpu: 2%/50%   1         5         1          7m33s

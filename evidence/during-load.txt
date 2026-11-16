@@ -1,0 +1,10 @@
+NAME                            READY   STATUS    RESTARTS   AGE
+pod/iris-api-55c49f55d4-jk6xj   1/1     Running   0          13s
+pod/iris-api-55c49f55d4-k9g7s   1/1     Running   0          28s
+pod/iris-api-55c49f55d4-kstvl   1/1     Running   0          28s
+pod/iris-api-55c49f55d4-nfnsw   1/1     Running   0          88s
+pod/iris-api-55c49f55d4-tpghs   1/1     Running   0          11m
+pod/iris-load-9hxb6             1/1     Running   0          2m55s
+
+NAME                                           REFERENCE             TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+horizontalpodautoscaler.autoscaling/iris-api   Deployment/iris-api   cpu: 501%/50%   1         5         4          10m

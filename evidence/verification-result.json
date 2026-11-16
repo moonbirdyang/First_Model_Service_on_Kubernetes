@@ -1,0 +1,8 @@
+{
+    "apiVerified":  true,
+    "maxReplicas":  5,
+    "scaleUpVerified":  true,
+    "loadCompleted":  true,
+    "scaleDownVerified":  true,
+    "elapsedSeconds":  620
+}

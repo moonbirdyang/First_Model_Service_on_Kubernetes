@@ -1,0 +1,1503 @@
+{
+    "time":  "2026-11-16T14:31:34.2662645+08:00",
+    "hpa":  {
+                "apiVersion":  "autoscaling/v2",
+                "kind":  "HorizontalPodAutoscaler",
+                "metadata":  {
+                                 "annotations":  {
+                                                     "kubectl.kubernetes.io/last-applied-configuration":  "{\"apiVersion\":\"autoscaling/v2\",\"kind\":\"HorizontalPodAutoscaler\",\"metadata\":{\"annotations\":{},\"name\":\"iris-api\",\"namespace\":\"default\"},\"spec\":{\"maxReplicas\":5,\"metrics\":[{\"resource\":{\"name\":\"cpu\",\"target\":{\"averageUtilization\":50,\"type\":\"Utilization\"}},\"type\":\"Resource\"}],\"minReplicas\":1,\"scaleTargetRef\":{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"name\":\"iris-api\"}}}\n"
+                                                 },
+                                 "creationTimestamp":  "2026-11-16T06:21:05Z",
+                                 "generation":  1,
+                                 "name":  "iris-api",
+                                 "namespace":  "default",
+                                 "resourceVersion":  "1276",
+                                 "uid":  "55f4ffa0-2f15-4c87-9246-5391719ec065"
+                             },
+                "spec":  {
+                             "maxReplicas":  5,
+                             "metrics":  [
+                                             {
+                                                 "resource":  {
+                                                                  "name":  "cpu",
+                                                                  "target":  {
+                                                                                 "averageUtilization":  50,
+                                                                                 "type":  "Utilization"
+                                                                             }
+                                                              },
+                                                 "type":  "Resource"
+                                             }
+                                         ],
+                             "minReplicas":  1,
+                             "scaleTargetRef":  {
+                                                    "apiVersion":  "apps/v1",
+                                                    "kind":  "Deployment",
+                                                    "name":  "iris-api"
+                                                }
+                         },
+                "status":  {
+                               "conditions":  [
+                                                  {
+                                                      "lastTransitionTime":  "2026-11-16T06:21:05Z",
+                                                      "message":  "the HPA controller was able to update the target scale to 5",
+                                                      "reason":  "SucceededRescale",
+                                                      "status":  "True",
+                                                      "type":  "AbleToScale"
+                                                  },
+                                                  {
+                                                      "lastTransitionTime":  "2026-11-16T06:21:20Z",
+                                                      "message":  "the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)",
+                                                      "reason":  "ValidMetricFound",
+                                                      "status":  "True",
+                                                      "type":  "ScalingActive"
+                                                  },
+                                                  {
+                                                      "lastTransitionTime":  "2026-11-16T06:31:06Z",
+                                                      "message":  "the desired replica count is more than the maximum replica count",
+                                                      "reason":  "TooManyReplicas",
+                                                      "status":  "True",
+                                                      "type":  "ScalingLimited"
+                                                  },
+                                                  {
+                                                      "lastTransitionTime":  "2026-11-16T06:30:06Z",
+                                                      "message":  "the HPA controller did not scale the workload to zero",
+                                                      "reason":  "NotScaledToZero",
+                                                      "status":  "False",
+                                                      "type":  "ScaledToZero"
+                                                  }
+                                              ],
+                               "currentMetrics":  [
+                                                      {
+                                                          "resource":  {
+                                                                           "current":  {
+                                                                                           "averageUtilization":  501,
+                                                                                           "averageValue":  "501m"
+                                                                                       },
+                                                                           "name":  "cpu"
+                                                                       },
+                                                          "type":  "Resource"
+                                                      }
+                                                  ],
+                               "currentReplicas":  4,
+                               "desiredReplicas":  5,
+                               "lastScaleTime":  "2026-11-16T06:31:21Z",
+                               "observedGeneration":  1
+                           }
+            },
+    "pods":  {
+                 "apiVersion":  "v1",
+                 "items":  [
+                               {
+                                   "apiVersion":  "v1",
+                                   "kind":  "Pod",
+                                   "metadata":  {
+                                                    "creationTimestamp":  "2026-11-16T06:31:21Z",
+                                                    "generateName":  "iris-api-55c49f55d4-",
+                                                    "generation":  1,
+                                                    "labels":  {
+                                                                   "app":  "iris-api",
+                                                                   "pod-template-hash":  "55c49f55d4"
+                                                               },
+                                                    "name":  "iris-api-55c49f55d4-jk6xj",
+                                                    "namespace":  "default",
+                                                    "ownerReferences":  [
+                                                                            {
+                                                                                "apiVersion":  "apps/v1",
+                                                                                "blockOwnerDeletion":  true,
+                                                                                "controller":  true,
+                                                                                "kind":  "ReplicaSet",
+                                                                                "name":  "iris-api-55c49f55d4",
+                                                                                "uid":  "bad577ce-bec3-4387-bc2d-706b5c20307f"
+                                                                            }
+                                                                        ],
+                                                    "resourceVersion":  "1306",
+                                                    "uid":  "8e166748-aae8-46c1-93ee-51a228c412d1"
+                                                },
+                                   "spec":  {
+                                                "containers":  [
+                                                                   {
+                                                                       "image":  "iris-api:v1",
+                                                                       "imagePullPolicy":  "IfNotPresent",
+                                                                       "name":  "api",
+                                                                       "ports":  [
+                                                                                     {
+                                                                                         "containerPort":  8080,
+                                                                                         "protocol":  "TCP"
+                                                                                     }
+                                                                                 ],
+                                                                       "readinessProbe":  {
+                                                                                              "failureThreshold":  3,
+                                                                                              "httpGet":  {
+                                                                                                              "path":  "/healthz",
+                                                                                                              "port":  8080,
+                                                                                                              "scheme":  "HTTP"
+                                                                                                          },
+                                                                                              "initialDelaySeconds":  3,
+                                                                                              "periodSeconds":  5,
+                                                                                              "successThreshold":  1,
+                                                                                              "timeoutSeconds":  1
+                                                                                          },
+                                                                       "resources":  {
+                                                                                         "limits":  {
+                                                                                                        "cpu":  "500m",
+                                                                                                        "memory":  "256Mi"
+                                                                                                    },
+                                                                                         "requests":  {
+                                                                                                          "cpu":  "100m",
+                                                                                                          "memory":  "128Mi"
+                                                                                                      }
+                                                                                     },
+                                                                       "terminationMessagePath":  "/dev/termination-log",
+                                                                       "terminationMessagePolicy":  "File",
+                                                                       "volumeMounts":  [
+                                                                                            {
+                                                                                                "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                "name":  "kube-api-access-nzpfx",
+                                                                                                "readOnly":  true
+                                                                                            }
+                                                                                        ]
+                                                                   }
+                                                               ],
+                                                "dnsPolicy":  "ClusterFirst",
+                                                "enableServiceLinks":  true,
+                                                "nodeName":  "iris-lab",
+                                                "preemptionPolicy":  "PreemptLowerPriority",
+                                                "priority":  0,
+                                                "restartPolicy":  "Always",
+                                                "schedulerName":  "default-scheduler",
+                                                "securityContext":  {
+
+                                                                    },
+                                                "serviceAccount":  "default",
+                                                "serviceAccountName":  "default",
+                                                "terminationGracePeriodSeconds":  30,
+                                                "tolerations":  [
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/not-ready",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    },
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/unreachable",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    }
+                                                                ],
+                                                "volumes":  [
+                                                                {
+                                                                    "name":  "kube-api-access-nzpfx",
+                                                                    "projected":  {
+                                                                                      "defaultMode":  420,
+                                                                                      "sources":  [
+                                                                                                      {
+                                                                                                          "serviceAccountToken":  {
+                                                                                                                                      "expirationSeconds":  3607,
+                                                                                                                                      "path":  "token"
+                                                                                                                                  }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "configMap":  {
+                                                                                                                            "items":  [
+                                                                                                                                          {
+                                                                                                                                              "key":  "ca.crt",
+                                                                                                                                              "path":  "ca.crt"
+                                                                                                                                          }
+                                                                                                                                      ],
+                                                                                                                            "name":  "kube-root-ca.crt"
+                                                                                                                        }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "downwardAPI":  {
+                                                                                                                              "items":  [
+                                                                                                                                            {
+                                                                                                                                                "fieldRef":  {
+                                                                                                                                                                 "apiVersion":  "v1",
+                                                                                                                                                                 "fieldPath":  "metadata.namespace"
+                                                                                                                                                             },
+                                                                                                                                                "path":  "namespace"
+                                                                                                                                            }
+                                                                                                                                        ]
+                                                                                                                          }
+                                                                                                      }
+                                                                                                  ]
+                                                                                  }
+                                                                }
+                                                            ]
+                                            },
+                                   "status":  {
+                                                  "allocatedResources":  {
+                                                                             "cpu":  "100m",
+                                                                             "memory":  "128Mi"
+                                                                         },
+                                                  "conditions":  [
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:21Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodReadyToStartContainers"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:21Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Initialized"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:27Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Ready"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:27Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "ContainersReady"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:21Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodScheduled"
+                                                                     }
+                                                                 ],
+                                                  "containerStatuses":  [
+                                                                            {
+                                                                                "allocatedResources":  {
+                                                                                                           "cpu":  "100m",
+                                                                                                           "memory":  "128Mi"
+                                                                                                       },
+                                                                                "containerID":  "containerd://728a3efcd57dde175b389006fb96c9c822277cfe5cbaf28ce5312f81c9a206b4",
+                                                                                "image":  "docker.io/library/iris-api:v1",
+                                                                                "imageID":  "sha256:636b1c76dc237fc67b3b3b04a580990ddabc6e610646c430295c420d21c34c4b",
+                                                                                "lastState":  {
+
+                                                                                              },
+                                                                                "name":  "api",
+                                                                                "ready":  true,
+                                                                                "resources":  {
+                                                                                                  "limits":  {
+                                                                                                                 "cpu":  "500m",
+                                                                                                                 "memory":  "256Mi"
+                                                                                                             },
+                                                                                                  "requests":  {
+                                                                                                                   "cpu":  "100m",
+                                                                                                                   "memory":  "128Mi"
+                                                                                                               }
+                                                                                              },
+                                                                                "restartCount":  0,
+                                                                                "started":  true,
+                                                                                "state":  {
+                                                                                              "running":  {
+                                                                                                              "startedAt":  "2026-11-16T06:31:21Z"
+                                                                                                          }
+                                                                                          },
+                                                                                "user":  {
+                                                                                             "linux":  {
+                                                                                                           "gid":  0,
+                                                                                                           "supplementalGroups":  [
+                                                                                                                                      0
+                                                                                                                                  ],
+                                                                                                           "uid":  0
+                                                                                                       }
+                                                                                         },
+                                                                                "volumeMounts":  [
+                                                                                                     {
+                                                                                                         "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                         "name":  "kube-api-access-nzpfx",
+                                                                                                         "readOnly":  true,
+                                                                                                         "recursiveReadOnly":  "Disabled"
+                                                                                                     }
+                                                                                                 ]
+                                                                            }
+                                                                        ],
+                                                  "hostIP":  "192.168.49.2",
+                                                  "hostIPs":  [
+                                                                  {
+                                                                      "ip":  "192.168.49.2"
+                                                                  }
+                                                              ],
+                                                  "observedGeneration":  1,
+                                                  "phase":  "Running",
+                                                  "podIP":  "10.244.0.9",
+                                                  "podIPs":  [
+                                                                 {
+                                                                     "ip":  "10.244.0.9"
+                                                                 }
+                                                             ],
+                                                  "qosClass":  "Burstable",
+                                                  "resources":  {
+                                                                    "limits":  {
+                                                                                   "cpu":  "500m",
+                                                                                   "memory":  "256Mi"
+                                                                               },
+                                                                    "requests":  {
+                                                                                     "cpu":  "79m",
+                                                                                     "memory":  "128Mi"
+                                                                                 }
+                                                                },
+                                                  "startTime":  "2026-11-16T06:31:21Z"
+                                              }
+                               },
+                               {
+                                   "apiVersion":  "v1",
+                                   "kind":  "Pod",
+                                   "metadata":  {
+                                                    "creationTimestamp":  "2026-11-16T06:31:06Z",
+                                                    "generateName":  "iris-api-55c49f55d4-",
+                                                    "generation":  1,
+                                                    "labels":  {
+                                                                   "app":  "iris-api",
+                                                                   "pod-template-hash":  "55c49f55d4"
+                                                               },
+                                                    "name":  "iris-api-55c49f55d4-k9g7s",
+                                                    "namespace":  "default",
+                                                    "ownerReferences":  [
+                                                                            {
+                                                                                "apiVersion":  "apps/v1",
+                                                                                "blockOwnerDeletion":  true,
+                                                                                "controller":  true,
+                                                                                "kind":  "ReplicaSet",
+                                                                                "name":  "iris-api-55c49f55d4",
+                                                                                "uid":  "bad577ce-bec3-4387-bc2d-706b5c20307f"
+                                                                            }
+                                                                        ],
+                                                    "resourceVersion":  "1259",
+                                                    "uid":  "8edb0e75-605c-4502-98e2-84b0af085261"
+                                                },
+                                   "spec":  {
+                                                "containers":  [
+                                                                   {
+                                                                       "image":  "iris-api:v1",
+                                                                       "imagePullPolicy":  "IfNotPresent",
+                                                                       "name":  "api",
+                                                                       "ports":  [
+                                                                                     {
+                                                                                         "containerPort":  8080,
+                                                                                         "protocol":  "TCP"
+                                                                                     }
+                                                                                 ],
+                                                                       "readinessProbe":  {
+                                                                                              "failureThreshold":  3,
+                                                                                              "httpGet":  {
+                                                                                                              "path":  "/healthz",
+                                                                                                              "port":  8080,
+                                                                                                              "scheme":  "HTTP"
+                                                                                                          },
+                                                                                              "initialDelaySeconds":  3,
+                                                                                              "periodSeconds":  5,
+                                                                                              "successThreshold":  1,
+                                                                                              "timeoutSeconds":  1
+                                                                                          },
+                                                                       "resources":  {
+                                                                                         "limits":  {
+                                                                                                        "cpu":  "500m",
+                                                                                                        "memory":  "256Mi"
+                                                                                                    },
+                                                                                         "requests":  {
+                                                                                                          "cpu":  "100m",
+                                                                                                          "memory":  "128Mi"
+                                                                                                      }
+                                                                                     },
+                                                                       "terminationMessagePath":  "/dev/termination-log",
+                                                                       "terminationMessagePolicy":  "File",
+                                                                       "volumeMounts":  [
+                                                                                            {
+                                                                                                "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                "name":  "kube-api-access-rwm79",
+                                                                                                "readOnly":  true
+                                                                                            }
+                                                                                        ]
+                                                                   }
+                                                               ],
+                                                "dnsPolicy":  "ClusterFirst",
+                                                "enableServiceLinks":  true,
+                                                "nodeName":  "iris-lab",
+                                                "preemptionPolicy":  "PreemptLowerPriority",
+                                                "priority":  0,
+                                                "restartPolicy":  "Always",
+                                                "schedulerName":  "default-scheduler",
+                                                "securityContext":  {
+
+                                                                    },
+                                                "serviceAccount":  "default",
+                                                "serviceAccountName":  "default",
+                                                "terminationGracePeriodSeconds":  30,
+                                                "tolerations":  [
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/not-ready",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    },
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/unreachable",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    }
+                                                                ],
+                                                "volumes":  [
+                                                                {
+                                                                    "name":  "kube-api-access-rwm79",
+                                                                    "projected":  {
+                                                                                      "defaultMode":  420,
+                                                                                      "sources":  [
+                                                                                                      {
+                                                                                                          "serviceAccountToken":  {
+                                                                                                                                      "expirationSeconds":  3607,
+                                                                                                                                      "path":  "token"
+                                                                                                                                  }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "configMap":  {
+                                                                                                                            "items":  [
+                                                                                                                                          {
+                                                                                                                                              "key":  "ca.crt",
+                                                                                                                                              "path":  "ca.crt"
+                                                                                                                                          }
+                                                                                                                                      ],
+                                                                                                                            "name":  "kube-root-ca.crt"
+                                                                                                                        }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "downwardAPI":  {
+                                                                                                                              "items":  [
+                                                                                                                                            {
+                                                                                                                                                "fieldRef":  {
+                                                                                                                                                                 "apiVersion":  "v1",
+                                                                                                                                                                 "fieldPath":  "metadata.namespace"
+                                                                                                                                                             },
+                                                                                                                                                "path":  "namespace"
+                                                                                                                                            }
+                                                                                                                                        ]
+                                                                                                                          }
+                                                                                                      }
+                                                                                                  ]
+                                                                                  }
+                                                                }
+                                                            ]
+                                            },
+                                   "status":  {
+                                                  "allocatedResources":  {
+                                                                             "cpu":  "100m",
+                                                                             "memory":  "128Mi"
+                                                                         },
+                                                  "conditions":  [
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodReadyToStartContainers"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Initialized"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:12Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Ready"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:12Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "ContainersReady"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodScheduled"
+                                                                     }
+                                                                 ],
+                                                  "containerStatuses":  [
+                                                                            {
+                                                                                "allocatedResources":  {
+                                                                                                           "cpu":  "100m",
+                                                                                                           "memory":  "128Mi"
+                                                                                                       },
+                                                                                "containerID":  "containerd://ab7f482d93a913b24e5570e17affac59ec16efbda0298b1962514806b7660927",
+                                                                                "image":  "docker.io/library/iris-api:v1",
+                                                                                "imageID":  "sha256:636b1c76dc237fc67b3b3b04a580990ddabc6e610646c430295c420d21c34c4b",
+                                                                                "lastState":  {
+
+                                                                                              },
+                                                                                "name":  "api",
+                                                                                "ready":  true,
+                                                                                "resources":  {
+                                                                                                  "limits":  {
+                                                                                                                 "cpu":  "500m",
+                                                                                                                 "memory":  "256Mi"
+                                                                                                             },
+                                                                                                  "requests":  {
+                                                                                                                   "cpu":  "100m",
+                                                                                                                   "memory":  "128Mi"
+                                                                                                               }
+                                                                                              },
+                                                                                "restartCount":  0,
+                                                                                "started":  true,
+                                                                                "state":  {
+                                                                                              "running":  {
+                                                                                                              "startedAt":  "2026-11-16T06:31:06Z"
+                                                                                                          }
+                                                                                          },
+                                                                                "user":  {
+                                                                                             "linux":  {
+                                                                                                           "gid":  0,
+                                                                                                           "supplementalGroups":  [
+                                                                                                                                      0
+                                                                                                                                  ],
+                                                                                                           "uid":  0
+                                                                                                       }
+                                                                                         },
+                                                                                "volumeMounts":  [
+                                                                                                     {
+                                                                                                         "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                         "name":  "kube-api-access-rwm79",
+                                                                                                         "readOnly":  true,
+                                                                                                         "recursiveReadOnly":  "Disabled"
+                                                                                                     }
+                                                                                                 ]
+                                                                            }
+                                                                        ],
+                                                  "hostIP":  "192.168.49.2",
+                                                  "hostIPs":  [
+                                                                  {
+                                                                      "ip":  "192.168.49.2"
+                                                                  }
+                                                              ],
+                                                  "observedGeneration":  1,
+                                                  "phase":  "Running",
+                                                  "podIP":  "10.244.0.7",
+                                                  "podIPs":  [
+                                                                 {
+                                                                     "ip":  "10.244.0.7"
+                                                                 }
+                                                             ],
+                                                  "qosClass":  "Burstable",
+                                                  "resources":  {
+                                                                    "limits":  {
+                                                                                   "cpu":  "500m",
+                                                                                   "memory":  "256Mi"
+                                                                               },
+                                                                    "requests":  {
+                                                                                     "cpu":  "79m",
+                                                                                     "memory":  "128Mi"
+                                                                                 }
+                                                                },
+                                                  "startTime":  "2026-11-16T06:31:06Z"
+                                              }
+                               },
+                               {
+                                   "apiVersion":  "v1",
+                                   "kind":  "Pod",
+                                   "metadata":  {
+                                                    "creationTimestamp":  "2026-11-16T06:31:06Z",
+                                                    "generateName":  "iris-api-55c49f55d4-",
+                                                    "generation":  1,
+                                                    "labels":  {
+                                                                   "app":  "iris-api",
+                                                                   "pod-template-hash":  "55c49f55d4"
+                                                               },
+                                                    "name":  "iris-api-55c49f55d4-kstvl",
+                                                    "namespace":  "default",
+                                                    "ownerReferences":  [
+                                                                            {
+                                                                                "apiVersion":  "apps/v1",
+                                                                                "blockOwnerDeletion":  true,
+                                                                                "controller":  true,
+                                                                                "kind":  "ReplicaSet",
+                                                                                "name":  "iris-api-55c49f55d4",
+                                                                                "uid":  "bad577ce-bec3-4387-bc2d-706b5c20307f"
+                                                                            }
+                                                                        ],
+                                                    "resourceVersion":  "1264",
+                                                    "uid":  "6c3c2904-6d3b-4c27-9905-89c33f8cc76c"
+                                                },
+                                   "spec":  {
+                                                "containers":  [
+                                                                   {
+                                                                       "image":  "iris-api:v1",
+                                                                       "imagePullPolicy":  "IfNotPresent",
+                                                                       "name":  "api",
+                                                                       "ports":  [
+                                                                                     {
+                                                                                         "containerPort":  8080,
+                                                                                         "protocol":  "TCP"
+                                                                                     }
+                                                                                 ],
+                                                                       "readinessProbe":  {
+                                                                                              "failureThreshold":  3,
+                                                                                              "httpGet":  {
+                                                                                                              "path":  "/healthz",
+                                                                                                              "port":  8080,
+                                                                                                              "scheme":  "HTTP"
+                                                                                                          },
+                                                                                              "initialDelaySeconds":  3,
+                                                                                              "periodSeconds":  5,
+                                                                                              "successThreshold":  1,
+                                                                                              "timeoutSeconds":  1
+                                                                                          },
+                                                                       "resources":  {
+                                                                                         "limits":  {
+                                                                                                        "cpu":  "500m",
+                                                                                                        "memory":  "256Mi"
+                                                                                                    },
+                                                                                         "requests":  {
+                                                                                                          "cpu":  "100m",
+                                                                                                          "memory":  "128Mi"
+                                                                                                      }
+                                                                                     },
+                                                                       "terminationMessagePath":  "/dev/termination-log",
+                                                                       "terminationMessagePolicy":  "File",
+                                                                       "volumeMounts":  [
+                                                                                            {
+                                                                                                "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                "name":  "kube-api-access-4gxjf",
+                                                                                                "readOnly":  true
+                                                                                            }
+                                                                                        ]
+                                                                   }
+                                                               ],
+                                                "dnsPolicy":  "ClusterFirst",
+                                                "enableServiceLinks":  true,
+                                                "nodeName":  "iris-lab",
+                                                "preemptionPolicy":  "PreemptLowerPriority",
+                                                "priority":  0,
+                                                "restartPolicy":  "Always",
+                                                "schedulerName":  "default-scheduler",
+                                                "securityContext":  {
+
+                                                                    },
+                                                "serviceAccount":  "default",
+                                                "serviceAccountName":  "default",
+                                                "terminationGracePeriodSeconds":  30,
+                                                "tolerations":  [
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/not-ready",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    },
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/unreachable",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    }
+                                                                ],
+                                                "volumes":  [
+                                                                {
+                                                                    "name":  "kube-api-access-4gxjf",
+                                                                    "projected":  {
+                                                                                      "defaultMode":  420,
+                                                                                      "sources":  [
+                                                                                                      {
+                                                                                                          "serviceAccountToken":  {
+                                                                                                                                      "expirationSeconds":  3607,
+                                                                                                                                      "path":  "token"
+                                                                                                                                  }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "configMap":  {
+                                                                                                                            "items":  [
+                                                                                                                                          {
+                                                                                                                                              "key":  "ca.crt",
+                                                                                                                                              "path":  "ca.crt"
+                                                                                                                                          }
+                                                                                                                                      ],
+                                                                                                                            "name":  "kube-root-ca.crt"
+                                                                                                                        }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "downwardAPI":  {
+                                                                                                                              "items":  [
+                                                                                                                                            {
+                                                                                                                                                "fieldRef":  {
+                                                                                                                                                                 "apiVersion":  "v1",
+                                                                                                                                                                 "fieldPath":  "metadata.namespace"
+                                                                                                                                                             },
+                                                                                                                                                "path":  "namespace"
+                                                                                                                                            }
+                                                                                                                                        ]
+                                                                                                                          }
+                                                                                                      }
+                                                                                                  ]
+                                                                                  }
+                                                                }
+                                                            ]
+                                            },
+                                   "status":  {
+                                                  "allocatedResources":  {
+                                                                             "cpu":  "100m",
+                                                                             "memory":  "128Mi"
+                                                                         },
+                                                  "conditions":  [
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodReadyToStartContainers"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Initialized"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:12Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Ready"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:12Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "ContainersReady"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:31:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodScheduled"
+                                                                     }
+                                                                 ],
+                                                  "containerStatuses":  [
+                                                                            {
+                                                                                "allocatedResources":  {
+                                                                                                           "cpu":  "100m",
+                                                                                                           "memory":  "128Mi"
+                                                                                                       },
+                                                                                "containerID":  "containerd://ca4922cfc33a188c287078c51449364907993edcbcc427d8e335b5e6454eecc6",
+                                                                                "image":  "docker.io/library/iris-api:v1",
+                                                                                "imageID":  "sha256:636b1c76dc237fc67b3b3b04a580990ddabc6e610646c430295c420d21c34c4b",
+                                                                                "lastState":  {
+
+                                                                                              },
+                                                                                "name":  "api",
+                                                                                "ready":  true,
+                                                                                "resources":  {
+                                                                                                  "limits":  {
+                                                                                                                 "cpu":  "500m",
+                                                                                                                 "memory":  "256Mi"
+                                                                                                             },
+                                                                                                  "requests":  {
+                                                                                                                   "cpu":  "100m",
+                                                                                                                   "memory":  "128Mi"
+                                                                                                               }
+                                                                                              },
+                                                                                "restartCount":  0,
+                                                                                "started":  true,
+                                                                                "state":  {
+                                                                                              "running":  {
+                                                                                                              "startedAt":  "2026-11-16T06:31:06Z"
+                                                                                                          }
+                                                                                          },
+                                                                                "user":  {
+                                                                                             "linux":  {
+                                                                                                           "gid":  0,
+                                                                                                           "supplementalGroups":  [
+                                                                                                                                      0
+                                                                                                                                  ],
+                                                                                                           "uid":  0
+                                                                                                       }
+                                                                                         },
+                                                                                "volumeMounts":  [
+                                                                                                     {
+                                                                                                         "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                         "name":  "kube-api-access-4gxjf",
+                                                                                                         "readOnly":  true,
+                                                                                                         "recursiveReadOnly":  "Disabled"
+                                                                                                     }
+                                                                                                 ]
+                                                                            }
+                                                                        ],
+                                                  "hostIP":  "192.168.49.2",
+                                                  "hostIPs":  [
+                                                                  {
+                                                                      "ip":  "192.168.49.2"
+                                                                  }
+                                                              ],
+                                                  "observedGeneration":  1,
+                                                  "phase":  "Running",
+                                                  "podIP":  "10.244.0.8",
+                                                  "podIPs":  [
+                                                                 {
+                                                                     "ip":  "10.244.0.8"
+                                                                 }
+                                                             ],
+                                                  "qosClass":  "Burstable",
+                                                  "resources":  {
+                                                                    "limits":  {
+                                                                                   "cpu":  "500m",
+                                                                                   "memory":  "256Mi"
+                                                                               },
+                                                                    "requests":  {
+                                                                                     "cpu":  "79m",
+                                                                                     "memory":  "128Mi"
+                                                                                 }
+                                                                },
+                                                  "startTime":  "2026-11-16T06:31:06Z"
+                                              }
+                               },
+                               {
+                                   "apiVersion":  "v1",
+                                   "kind":  "Pod",
+                                   "metadata":  {
+                                                    "creationTimestamp":  "2026-11-16T06:30:06Z",
+                                                    "generateName":  "iris-api-55c49f55d4-",
+                                                    "generation":  1,
+                                                    "labels":  {
+                                                                   "app":  "iris-api",
+                                                                   "pod-template-hash":  "55c49f55d4"
+                                                               },
+                                                    "name":  "iris-api-55c49f55d4-nfnsw",
+                                                    "namespace":  "default",
+                                                    "ownerReferences":  [
+                                                                            {
+                                                                                "apiVersion":  "apps/v1",
+                                                                                "blockOwnerDeletion":  true,
+                                                                                "controller":  true,
+                                                                                "kind":  "ReplicaSet",
+                                                                                "name":  "iris-api-55c49f55d4",
+                                                                                "uid":  "bad577ce-bec3-4387-bc2d-706b5c20307f"
+                                                                            }
+                                                                        ],
+                                                    "resourceVersion":  "1162",
+                                                    "uid":  "7586898c-54fe-477e-a931-c796caab453a"
+                                                },
+                                   "spec":  {
+                                                "containers":  [
+                                                                   {
+                                                                       "image":  "iris-api:v1",
+                                                                       "imagePullPolicy":  "IfNotPresent",
+                                                                       "name":  "api",
+                                                                       "ports":  [
+                                                                                     {
+                                                                                         "containerPort":  8080,
+                                                                                         "protocol":  "TCP"
+                                                                                     }
+                                                                                 ],
+                                                                       "readinessProbe":  {
+                                                                                              "failureThreshold":  3,
+                                                                                              "httpGet":  {
+                                                                                                              "path":  "/healthz",
+                                                                                                              "port":  8080,
+                                                                                                              "scheme":  "HTTP"
+                                                                                                          },
+                                                                                              "initialDelaySeconds":  3,
+                                                                                              "periodSeconds":  5,
+                                                                                              "successThreshold":  1,
+                                                                                              "timeoutSeconds":  1
+                                                                                          },
+                                                                       "resources":  {
+                                                                                         "limits":  {
+                                                                                                        "cpu":  "500m",
+                                                                                                        "memory":  "256Mi"
+                                                                                                    },
+                                                                                         "requests":  {
+                                                                                                          "cpu":  "100m",
+                                                                                                          "memory":  "128Mi"
+                                                                                                      }
+                                                                                     },
+                                                                       "terminationMessagePath":  "/dev/termination-log",
+                                                                       "terminationMessagePolicy":  "File",
+                                                                       "volumeMounts":  [
+                                                                                            {
+                                                                                                "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                "name":  "kube-api-access-4ff7m",
+                                                                                                "readOnly":  true
+                                                                                            }
+                                                                                        ]
+                                                                   }
+                                                               ],
+                                                "dnsPolicy":  "ClusterFirst",
+                                                "enableServiceLinks":  true,
+                                                "nodeName":  "iris-lab",
+                                                "preemptionPolicy":  "PreemptLowerPriority",
+                                                "priority":  0,
+                                                "restartPolicy":  "Always",
+                                                "schedulerName":  "default-scheduler",
+                                                "securityContext":  {
+
+                                                                    },
+                                                "serviceAccount":  "default",
+                                                "serviceAccountName":  "default",
+                                                "terminationGracePeriodSeconds":  30,
+                                                "tolerations":  [
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/not-ready",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    },
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/unreachable",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    }
+                                                                ],
+                                                "volumes":  [
+                                                                {
+                                                                    "name":  "kube-api-access-4ff7m",
+                                                                    "projected":  {
+                                                                                      "defaultMode":  420,
+                                                                                      "sources":  [
+                                                                                                      {
+                                                                                                          "serviceAccountToken":  {
+                                                                                                                                      "expirationSeconds":  3607,
+                                                                                                                                      "path":  "token"
+                                                                                                                                  }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "configMap":  {
+                                                                                                                            "items":  [
+                                                                                                                                          {
+                                                                                                                                              "key":  "ca.crt",
+                                                                                                                                              "path":  "ca.crt"
+                                                                                                                                          }
+                                                                                                                                      ],
+                                                                                                                            "name":  "kube-root-ca.crt"
+                                                                                                                        }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "downwardAPI":  {
+                                                                                                                              "items":  [
+                                                                                                                                            {
+                                                                                                                                                "fieldRef":  {
+                                                                                                                                                                 "apiVersion":  "v1",
+                                                                                                                                                                 "fieldPath":  "metadata.namespace"
+                                                                                                                                                             },
+                                                                                                                                                "path":  "namespace"
+                                                                                                                                            }
+                                                                                                                                        ]
+                                                                                                                          }
+                                                                                                      }
+                                                                                                  ]
+                                                                                  }
+                                                                }
+                                                            ]
+                                            },
+                                   "status":  {
+                                                  "allocatedResources":  {
+                                                                             "cpu":  "100m",
+                                                                             "memory":  "128Mi"
+                                                                         },
+                                                  "conditions":  [
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:30:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodReadyToStartContainers"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:30:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Initialized"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:30:11Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Ready"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:30:11Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "ContainersReady"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:30:06Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodScheduled"
+                                                                     }
+                                                                 ],
+                                                  "containerStatuses":  [
+                                                                            {
+                                                                                "allocatedResources":  {
+                                                                                                           "cpu":  "100m",
+                                                                                                           "memory":  "128Mi"
+                                                                                                       },
+                                                                                "containerID":  "containerd://2acf011955c738164caa636478388ab879c707828658f93a186667a377975615",
+                                                                                "image":  "docker.io/library/iris-api:v1",
+                                                                                "imageID":  "sha256:636b1c76dc237fc67b3b3b04a580990ddabc6e610646c430295c420d21c34c4b",
+                                                                                "lastState":  {
+
+                                                                                              },
+                                                                                "name":  "api",
+                                                                                "ready":  true,
+                                                                                "resources":  {
+                                                                                                  "limits":  {
+                                                                                                                 "cpu":  "500m",
+                                                                                                                 "memory":  "256Mi"
+                                                                                                             },
+                                                                                                  "requests":  {
+                                                                                                                   "cpu":  "100m",
+                                                                                                                   "memory":  "128Mi"
+                                                                                                               }
+                                                                                              },
+                                                                                "restartCount":  0,
+                                                                                "started":  true,
+                                                                                "state":  {
+                                                                                              "running":  {
+                                                                                                              "startedAt":  "2026-11-16T06:30:06Z"
+                                                                                                          }
+                                                                                          },
+                                                                                "user":  {
+                                                                                             "linux":  {
+                                                                                                           "gid":  0,
+                                                                                                           "supplementalGroups":  [
+                                                                                                                                      0
+                                                                                                                                  ],
+                                                                                                           "uid":  0
+                                                                                                       }
+                                                                                         },
+                                                                                "volumeMounts":  [
+                                                                                                     {
+                                                                                                         "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                         "name":  "kube-api-access-4ff7m",
+                                                                                                         "readOnly":  true,
+                                                                                                         "recursiveReadOnly":  "Disabled"
+                                                                                                     }
+                                                                                                 ]
+                                                                            }
+                                                                        ],
+                                                  "hostIP":  "192.168.49.2",
+                                                  "hostIPs":  [
+                                                                  {
+                                                                      "ip":  "192.168.49.2"
+                                                                  }
+                                                              ],
+                                                  "observedGeneration":  1,
+                                                  "phase":  "Running",
+                                                  "podIP":  "10.244.0.6",
+                                                  "podIPs":  [
+                                                                 {
+                                                                     "ip":  "10.244.0.6"
+                                                                 }
+                                                             ],
+                                                  "qosClass":  "Burstable",
+                                                  "resources":  {
+                                                                    "limits":  {
+                                                                                   "cpu":  "500m",
+                                                                                   "memory":  "256Mi"
+                                                                               },
+                                                                    "requests":  {
+                                                                                     "cpu":  "79m",
+                                                                                     "memory":  "128Mi"
+                                                                                 }
+                                                                },
+                                                  "startTime":  "2026-11-16T06:30:06Z"
+                                              }
+                               },
+                               {
+                                   "apiVersion":  "v1",
+                                   "kind":  "Pod",
+                                   "metadata":  {
+                                                    "creationTimestamp":  "2026-11-16T06:19:47Z",
+                                                    "generateName":  "iris-api-55c49f55d4-",
+                                                    "generation":  1,
+                                                    "labels":  {
+                                                                   "app":  "iris-api",
+                                                                   "pod-template-hash":  "55c49f55d4"
+                                                               },
+                                                    "name":  "iris-api-55c49f55d4-tpghs",
+                                                    "namespace":  "default",
+                                                    "ownerReferences":  [
+                                                                            {
+                                                                                "apiVersion":  "apps/v1",
+                                                                                "blockOwnerDeletion":  true,
+                                                                                "controller":  true,
+                                                                                "kind":  "ReplicaSet",
+                                                                                "name":  "iris-api-55c49f55d4",
+                                                                                "uid":  "bad577ce-bec3-4387-bc2d-706b5c20307f"
+                                                                            }
+                                                                        ],
+                                                    "resourceVersion":  "494",
+                                                    "uid":  "a1646075-3911-4943-9c45-f09acdcf9916"
+                                                },
+                                   "spec":  {
+                                                "containers":  [
+                                                                   {
+                                                                       "image":  "iris-api:v1",
+                                                                       "imagePullPolicy":  "IfNotPresent",
+                                                                       "name":  "api",
+                                                                       "ports":  [
+                                                                                     {
+                                                                                         "containerPort":  8080,
+                                                                                         "protocol":  "TCP"
+                                                                                     }
+                                                                                 ],
+                                                                       "readinessProbe":  {
+                                                                                              "failureThreshold":  3,
+                                                                                              "httpGet":  {
+                                                                                                              "path":  "/healthz",
+                                                                                                              "port":  8080,
+                                                                                                              "scheme":  "HTTP"
+                                                                                                          },
+                                                                                              "initialDelaySeconds":  3,
+                                                                                              "periodSeconds":  5,
+                                                                                              "successThreshold":  1,
+                                                                                              "timeoutSeconds":  1
+                                                                                          },
+                                                                       "resources":  {
+                                                                                         "limits":  {
+                                                                                                        "cpu":  "500m",
+                                                                                                        "memory":  "256Mi"
+                                                                                                    },
+                                                                                         "requests":  {
+                                                                                                          "cpu":  "100m",
+                                                                                                          "memory":  "128Mi"
+                                                                                                      }
+                                                                                     },
+                                                                       "terminationMessagePath":  "/dev/termination-log",
+                                                                       "terminationMessagePolicy":  "File",
+                                                                       "volumeMounts":  [
+                                                                                            {
+                                                                                                "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                "name":  "kube-api-access-mtsjl",
+                                                                                                "readOnly":  true
+                                                                                            }
+                                                                                        ]
+                                                                   }
+                                                               ],
+                                                "dnsPolicy":  "ClusterFirst",
+                                                "enableServiceLinks":  true,
+                                                "nodeName":  "iris-lab",
+                                                "preemptionPolicy":  "PreemptLowerPriority",
+                                                "priority":  0,
+                                                "restartPolicy":  "Always",
+                                                "schedulerName":  "default-scheduler",
+                                                "securityContext":  {
+
+                                                                    },
+                                                "serviceAccount":  "default",
+                                                "serviceAccountName":  "default",
+                                                "terminationGracePeriodSeconds":  30,
+                                                "tolerations":  [
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/not-ready",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    },
+                                                                    {
+                                                                        "effect":  "NoExecute",
+                                                                        "key":  "node.kubernetes.io/unreachable",
+                                                                        "operator":  "Exists",
+                                                                        "tolerationSeconds":  300
+                                                                    }
+                                                                ],
+                                                "volumes":  [
+                                                                {
+                                                                    "name":  "kube-api-access-mtsjl",
+                                                                    "projected":  {
+                                                                                      "defaultMode":  420,
+                                                                                      "sources":  [
+                                                                                                      {
+                                                                                                          "serviceAccountToken":  {
+                                                                                                                                      "expirationSeconds":  3607,
+                                                                                                                                      "path":  "token"
+                                                                                                                                  }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "configMap":  {
+                                                                                                                            "items":  [
+                                                                                                                                          {
+                                                                                                                                              "key":  "ca.crt",
+                                                                                                                                              "path":  "ca.crt"
+                                                                                                                                          }
+                                                                                                                                      ],
+                                                                                                                            "name":  "kube-root-ca.crt"
+                                                                                                                        }
+                                                                                                      },
+                                                                                                      {
+                                                                                                          "downwardAPI":  {
+                                                                                                                              "items":  [
+                                                                                                                                            {
+                                                                                                                                                "fieldRef":  {
+                                                                                                                                                                 "apiVersion":  "v1",
+                                                                                                                                                                 "fieldPath":  "metadata.namespace"
+                                                                                                                                                             },
+                                                                                                                                                "path":  "namespace"
+                                                                                                                                            }
+                                                                                                                                        ]
+                                                                                                                          }
+                                                                                                      }
+                                                                                                  ]
+                                                                                  }
+                                                                }
+                                                            ]
+                                            },
+                                   "status":  {
+                                                  "allocatedResources":  {
+                                                                             "cpu":  "100m",
+                                                                             "memory":  "128Mi"
+                                                                         },
+                                                  "conditions":  [
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:19:48Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodReadyToStartContainers"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:19:47Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Initialized"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:19:53Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "Ready"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:19:53Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "ContainersReady"
+                                                                     },
+                                                                     {
+                                                                         "lastProbeTime":  null,
+                                                                         "lastTransitionTime":  "2026-11-16T06:19:47Z",
+                                                                         "observedGeneration":  1,
+                                                                         "status":  "True",
+                                                                         "type":  "PodScheduled"
+                                                                     }
+                                                                 ],
+                                                  "containerStatuses":  [
+                                                                            {
+                                                                                "allocatedResources":  {
+                                                                                                           "cpu":  "100m",
+                                                                                                           "memory":  "128Mi"
+                                                                                                       },
+                                                                                "containerID":  "containerd://7f87e0763eb871892df304f591c5530332b8aee3cfc4d749d93bacbe6dd5960f",
+                                                                                "image":  "docker.io/library/iris-api:v1",
+                                                                                "imageID":  "sha256:636b1c76dc237fc67b3b3b04a580990ddabc6e610646c430295c420d21c34c4b",
+                                                                                "lastState":  {
+
+                                                                                              },
+                                                                                "name":  "api",
+                                                                                "ready":  true,
+                                                                                "resources":  {
+                                                                                                  "limits":  {
+                                                                                                                 "cpu":  "500m",
+                                                                                                                 "memory":  "256Mi"
+                                                                                                             },
+                                                                                                  "requests":  {
+                                                                                                                   "cpu":  "100m",
+                                                                                                                   "memory":  "128Mi"
+                                                                                                               }
+                                                                                              },
+                                                                                "restartCount":  0,
+                                                                                "started":  true,
+                                                                                "state":  {
+                                                                                              "running":  {
+                                                                                                              "startedAt":  "2026-11-16T06:19:48Z"
+                                                                                                          }
+                                                                                          },
+                                                                                "user":  {
+                                                                                             "linux":  {
+                                                                                                           "gid":  0,
+                                                                                                           "supplementalGroups":  [
+                                                                                                                                      0
+                                                                                                                                  ],
+                                                                                                           "uid":  0
+                                                                                                       }
+                                                                                         },
+                                                                                "volumeMounts":  [
+                                                                                                     {
+                                                                                                         "mountPath":  "/var/run/secrets/kubernetes.io/serviceaccount",
+                                                                                                         "name":  "kube-api-access-mtsjl",
+                                                                                                         "readOnly":  true,
+                                                                                                         "recursiveReadOnly":  "Disabled"
+                                                                                                     }
+                                                                                                 ]
+                                                                            }
+                                                                        ],
+                                                  "hostIP":  "192.168.49.2",
+                                                  "hostIPs":  [
+                                                                  {
+                                                                      "ip":  "192.168.49.2"
+                                                                  }
+                                                              ],
+                                                  "observedGeneration":  1,
+                                                  "phase":  "Running",
+                                                  "podIP":  "10.244.0.3",
+                                                  "podIPs":  [
+                                                                 {
+                                                                     "ip":  "10.244.0.3"
+                                                                 }
+                                                             ],
+                                                  "qosClass":  "Burstable",
+                                                  "resources":  {
+                                                                    "limits":  {
+                                                                                   "cpu":  "500m",
+                                                                                   "memory":  "256Mi"
+                                                                               },
+                                                                    "requests":  {
+                                                                                     "cpu":  "79m",
+                                                                                     "memory":  "128Mi"
+                                                                                 }
+                                                                },
+                                                  "startTime":  "2026-11-16T06:19:47Z"
+                                              }
+                               }
+                           ],
+                 "kind":  "List",
+                 "metadata":  {
+                                  "resourceVersion":  ""
+                              }
+             },
+    "deployment":  {
+                       "apiVersion":  "apps/v1",
+                       "kind":  "Deployment",
+                       "metadata":  {
+                                        "annotations":  {
+                                                            "deployment.kubernetes.io/revision":  "1",
+                                                            "kubectl.kubernetes.io/last-applied-configuration":  "{\"apiVersion\":\"apps/v1\",\"kind\":\"Deployment\",\"metadata\":{\"annotations\":{},\"name\":\"iris-api\",\"namespace\":\"default\"},\"spec\":{\"replicas\":1,\"selector\":{\"matchLabels\":{\"app\":\"iris-api\"}},\"template\":{\"metadata\":{\"labels\":{\"app\":\"iris-api\"}},\"spec\":{\"containers\":[{\"image\":\"iris-api:v1\",\"imagePullPolicy\":\"IfNotPresent\",\"name\":\"api\",\"ports\":[{\"containerPort\":8080}],\"readinessProbe\":{\"httpGet\":{\"path\":\"/healthz\",\"port\":8080},\"initialDelaySeconds\":3,\"periodSeconds\":5},\"resources\":{\"limits\":{\"cpu\":\"500m\",\"memory\":\"256Mi\"},\"requests\":{\"cpu\":\"100m\",\"memory\":\"128Mi\"}}}]}}}}\n"
+                                                        },
+                                        "creationTimestamp":  "2026-11-16T06:19:47Z",
+                                        "generation":  4,
+                                        "name":  "iris-api",
+                                        "namespace":  "default",
+                                        "resourceVersion":  "1307",
+                                        "uid":  "749c0269-64ad-4477-8a3b-3311c3de5584"
+                                    },
+                       "spec":  {
+                                    "progressDeadlineSeconds":  600,
+                                    "replicas":  5,
+                                    "revisionHistoryLimit":  10,
+                                    "selector":  {
+                                                     "matchLabels":  {
+                                                                         "app":  "iris-api"
+                                                                     }
+                                                 },
+                                    "strategy":  {
+                                                     "rollingUpdate":  {
+                                                                           "maxSurge":  "25%",
+                                                                           "maxUnavailable":  "25%"
+                                                                       },
+                                                     "type":  "RollingUpdate"
+                                                 },
+                                    "template":  {
+                                                     "metadata":  {
+                                                                      "labels":  {
+                                                                                     "app":  "iris-api"
+                                                                                 }
+                                                                  },
+                                                     "spec":  {
+                                                                  "containers":  [
+                                                                                     {
+                                                                                         "image":  "iris-api:v1",
+                                                                                         "imagePullPolicy":  "IfNotPresent",
+                                                                                         "name":  "api",
+                                                                                         "ports":  [
+                                                                                                       {
+                                                                                                           "containerPort":  8080,
+                                                                                                           "protocol":  "TCP"
+                                                                                                       }
+                                                                                                   ],
+                                                                                         "readinessProbe":  {
+                                                                                                                "failureThreshold":  3,
+                                                                                                                "httpGet":  {
+                                                                                                                                "path":  "/healthz",
+                                                                                                                                "port":  8080,
+                                                                                                                                "scheme":  "HTTP"
+                                                                                                                            },
+                                                                                                                "initialDelaySeconds":  3,
+                                                                                                                "periodSeconds":  5,
+                                                                                                                "successThreshold":  1,
+                                                                                                                "timeoutSeconds":  1
+                                                                                                            },
+                                                                                         "resources":  {
+                                                                                                           "limits":  {
+                                                                                                                          "cpu":  "500m",
+                                                                                                                          "memory":  "256Mi"
+                                                                                                                      },
+                                                                                                           "requests":  {
+                                                                                                                            "cpu":  "100m",
+                                                                                                                            "memory":  "128Mi"
+                                                                                                                        }
+                                                                                                       },
+                                                                                         "terminationMessagePath":  "/dev/termination-log",
+                                                                                         "terminationMessagePolicy":  "File"
+                                                                                     }
+                                                                                 ],
+                                                                  "dnsPolicy":  "ClusterFirst",
+                                                                  "restartPolicy":  "Always",
+                                                                  "schedulerName":  "default-scheduler",
+                                                                  "securityContext":  {
+
+                                                                                      },
+                                                                  "terminationGracePeriodSeconds":  30
+                                                              }
+                                                 }
+                                },
+                       "status":  {
+                                      "availableReplicas":  5,
+                                      "conditions":  [
+                                                         {
+                                                             "lastTransitionTime":  "2026-11-16T06:19:47Z",
+                                                             "lastUpdateTime":  "2026-11-16T06:19:53Z",
+                                                             "message":  "ReplicaSet \"iris-api-55c49f55d4\" has successfully progressed.",
+                                                             "reason":  "NewReplicaSetAvailable",
+                                                             "status":  "True",
+                                                             "type":  "Progressing"
+                                                         },
+                                                         {
+                                                             "lastTransitionTime":  "2026-11-16T06:31:12Z",
+                                                             "lastUpdateTime":  "2026-11-16T06:31:12Z",
+                                                             "message":  "Deployment has minimum availability.",
+                                                             "reason":  "MinimumReplicasAvailable",
+                                                             "status":  "True",
+                                                             "type":  "Available"
+                                                         }
+                                                     ],
+                                      "observedGeneration":  4,
+                                      "readyReplicas":  5,
+                                      "replicas":  5,
+                                      "terminatingReplicas":  0,
+                                      "updatedReplicas":  5
+                                  }
+                   }
+}

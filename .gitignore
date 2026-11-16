@@ -1,0 +1,14 @@
+tools/
+.kube/
+.minikube/
+.browser-preview/
+evidence/browser*.log
+evidence/browser*.err
+evidence/port-forward.*
+submission.zip
+.venv/
+__pycache__/
+model.pkl
+mlflow.db*
+mlruns/
+mlartifacts/
